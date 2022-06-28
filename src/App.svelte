@@ -25,7 +25,7 @@
 		let i2 = evaluate(expression, {n: 2});
 		let i3 = evaluate(expression, {n: 3});
 
-		while ((i3 === i2 && i2 === i1) || i3 < 0 || i2 < 0 || i1 < 0 ) {
+		while ((i3 === i2 && i2 === i1) || i3 < 0 || i2 < 0 || i1 < 0 || i1 > 343 || i2 > 343 || i3 > 343 || i3 % 1 !== 0 || i2 % 1 !== 0 || i1 % 1 !== 0) {
 			expression = randomExpression();
 		
 			i1 = evaluate(expression, {n: 1});
