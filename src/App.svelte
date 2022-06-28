@@ -59,14 +59,15 @@
 	const randomExpression = () => {
 		const generators = {
 			easy: [
-				`n ${randomChoiceFrom(['*', '/', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), 'n', '2n'])}`
+				`n ${randomChoiceFrom(['*', '/', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), randomNumberUpto(4) + 'n'])}`
 			],
 			moderate: [
 				`n ${randomChoiceFrom(['*', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), randomNumberUpto(4) + 'n'])} ${randomChoiceFrom(['+', '-'])} 1`, 
-				`n ${randomChoiceFrom(['*', '^'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-'])} ${randomNumberUpto(4)}`
+				`n ${randomChoiceFrom(['*', '^'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-'])} ${randomNumberUpto(4)}`,
+				`${randomNumberUpto(10)} - ${randomChoiceFrom(['n', '2n'])}`,
+				`${randomNumberUpto(10)} - ${randomChoiceFrom(['n', '2n'])} ${randomChoiceFrom(['*', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), randomNumberUpto(4) + 'n'])}`,
 			],
 			hard: [
-				`n ${randomChoiceFrom(['*', '^'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(14)}`, 
 				`n ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(14)}`
 			],
 		}
