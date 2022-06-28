@@ -1,8 +1,8 @@
 <script>
-	import { evaluate } from 'mathjs';
+	import { evaluate, simplify } from 'mathjs';
 	import Selector from './Selector.svelte';
 
-	let difficulty = "easy";
+	let difficulty = "moderate";
 	
 	const error = () => {
 		document.body.classList.add('shake');
@@ -108,7 +108,7 @@
 	</button>
 </div>
 
-<input type="text" on:keypress={handleKeypress} id="text" autocomplete="false" spellcheck="false">
+<input type="text" on:keypress={handleKeypress} id="text" autocomplete="false" spellcheck="false" placeholder="2n + 1">
 <Selector elements={['easy', 'moderate', 'hard']} bind:selected={difficulty} refresh={reloadSeries}/>
 
 <style>
@@ -168,11 +168,19 @@
 		color: #8E8E93;
 		padding-left: 12px;
 		outline: none;
-		transition: border 0.04s ease-in;
+		transition: border 0.2s ease-in;
+	}
+
+	input[type="text"]:hover {
+		border: 1px solid #8E8E93;
 	}
 
 	input[type="text"]:focus {
 		border: 1px solid #8E8E93;
+	}
+
+	input[type="text"]::placeholder {
+		color: #D1D1D6;
 	}
 
 	@media only screen and (max-width: 400px) {
