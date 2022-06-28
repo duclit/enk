@@ -1,5 +1,6 @@
 <script>
 	import { evaluate } from 'mathjs';
+	import Dialog from './Dialog.svelte';
 	import Navbar from './Navbar.svelte';
 	import Selector from './Selector.svelte';
 
@@ -90,6 +91,7 @@
 
 <input type="text" on:keypress={handleKeypress} id="text" autocomplete="false" spellcheck="false" placeholder="2n + 1">
 <Selector elements={['easy', 'moderate', 'hard']} bind:selected={difficulty} refresh={reloadSeries}/>
+<Dialog/>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700;900&display=swap');
