@@ -1,5 +1,5 @@
 <script>
-	import { evaluate, simplify } from 'mathjs';
+	import { evaluate } from 'mathjs';
 	import Selector from './Selector.svelte';
 
 	let difficulty = "easy";
