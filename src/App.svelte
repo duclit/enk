@@ -53,12 +53,22 @@
 	const randomNumberFactorial = (range) => `${randomNumberUpto(range)}!`;
 	
 	const randomExpression = () => {
+		const generators = {
+			easy: [
+				`n ${randomChoiceFrom(['*', '/', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), 'n', '2n'])}`
+			],
+			moderate: [
+				`n ${randomChoiceFrom(['*', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), randomNumberUpto(4) + 'n'])} ${randomChoiceFrom(['+', '-'])} 1`, 
+				`n ${randomChoiceFrom(['*', '^'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-'])} ${randomNumberUpto(4)}`
+			],
+			hard: [
+				`n ${randomChoiceFrom(['*', '^'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(14)}`, 
+				`n ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(14)}`
+			],
+		}
+
 		return randomChoiceFrom([
-			[`n ${randomChoiceFrom(['*', '/', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), 'n', '2n'])}`, 'easy'],
-			[`n ${randomChoiceFrom(['*', '^', '+', '-'])} ${randomChoiceFrom([randomNumberUpto(6), randomNumberUpto(4) + 'n'])} ${randomChoiceFrom(['+', '-'])} 1`, 'moderate'],
-			[`n ${randomChoiceFrom(['*', '^'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-'])} ${randomNumberUpto(4)}`, 'moderate'],
-			[`n ${randomChoiceFrom(['*', '^'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(14)}`, 'hard'],
-			[`n ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(4, 1) + 'n'} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(14)}`, 'hard'],
+			generators[difficulty]
 
 			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(5), 'n', '2n'])} ${randomChoiceFrom(['+', '-'])} 1`, 'moderate'],
 			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(4), 'n', '2n'])}`, 'easy'],
@@ -67,26 +77,26 @@
 		]);
 	}
 
-	const randomTerm = () => {
-		return randomChoiceFrom([
-			`${randomNumberUpto(3)}n`, randomNumberUpto(6),
-		])
-	}
-
-	const randomSeries = () => {
-		let operators = ['+', '-', '*', '^'];
-		let equation = `${randomNumberUpto(4)}n` + randomChoiceFrom(operators);
-		let strength = difficulty == 'hard' ? 4 : difficulty == 'easy' ? 2 : 3;
-		
-		for (let i = 0; i < strength - 2; i++) {
-			equation += randomTerm();
-			equation += randomChoiceFrom(operators);
-		}
-
-		equation += randomTerm();
-		console.log(equation);
-		return equation;
-	};
+	// const randomTerm = () => {
+	// 		return randomChoiceFrom([
+	// 			`${randomNumberUpto(3)}n`, randomNumberUpto(6),
+	// 		])
+	// }
+	// 
+	// const randomSeries = () => {
+	// 		let operators = ['+', '-', '*', '^'];
+	// 		let equation = `${randomNumberUpto(4)}n` + randomChoiceFrom(operators);
+	// 		let strength = difficulty == 'hard' ? 4 : difficulty == 'easy' ? 2 : 3;
+	// 	
+	// 		for (let i = 0; i < strength - 2; i++) {
+	// 			equation += randomTerm();
+	// 			equation += randomChoiceFrom(operators);
+	// 		}
+	//
+	// 		equation += randomTerm();
+	// 		console.log(equation);
+	// 		return equation;
+	// };
 </script>
 
 <div>
