@@ -7,6 +7,7 @@
 	let answerShown = false;
 	let loadPoints, updatePoints, answer;
 	let difficulty = "moderate";
+	let dialogShowing = false;
 	
 	const error = () => {
 		document.body.classList.add('shake');
@@ -89,7 +90,7 @@
 	setTimeout(reloadSeries, 10);
 </script>
 
-<Navbar bind:loadPoints={loadPoints} bind:updatePoints={updatePoints}/>
+<Navbar bind:loadPoints={loadPoints} bind:updatePoints={updatePoints} bind:showing={dialogShowing}/>
 
 <main>
 	<h1 id="series"> </h1>
@@ -107,7 +108,7 @@
 
 <input type="text" on:keypress={handleKeypress} id="text" autocomplete="false" spellcheck="false" placeholder="2n + 1">
 <Selector elements={['easy', 'moderate', 'hard']} bind:selected={difficulty} refresh={reloadSeries}/>
-<Dialog/>
+<Dialog bind:showing={dialogShowing}/>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700;900&display=swap');
