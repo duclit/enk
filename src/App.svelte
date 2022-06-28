@@ -14,7 +14,7 @@
 	};
 
 	const reloadSeries = () => {
-		const expression = randomSeries();
+		const expression = randomExpression();
 		
 		let i1 = evaluate(expression, {n: 1});
 		let i2 = evaluate(expression, {n: 2});
@@ -67,14 +67,14 @@
 			],
 		}
 
-		return randomChoiceFrom([
+		return randomChoiceFrom(
 			generators[difficulty]
 
 			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(5), 'n', '2n'])} ${randomChoiceFrom(['+', '-'])} 1`, 'moderate'],
 			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(4), 'n', '2n'])}`, 'easy'],
 			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberFactorial(6), 'n', '2n', 'n!', '2n!'])}`, 'hard'],
 			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(6), 'n', '2n'])} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(4)}`, 'hard'],
-		]);
+		);
 	}
 
 	// const randomTerm = () => {
