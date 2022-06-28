@@ -50,6 +50,7 @@
 
 		color: black;
         user-select: none;
+        overflow: none;
     }
 
     button:hover {
