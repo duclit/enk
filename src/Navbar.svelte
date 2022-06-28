@@ -20,8 +20,9 @@
 
 <nav>
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3.73334 10.2667H24.2667M3.73334 17.7333H24.2667M12.1333 2.79999L8.4 25.2M19.6 2.79999L15.8667 25.2" stroke="white" stroke-width="1.5"/>
-    </svg>        
+        <path d="M3.73334 10.2667H24.2667M3.73334 17.7333H24.2667M12.1333 2.79999L8.4 25.2M19.6 2.79999L15.8667 25.2" stroke="white" stroke-width="2"/>
+    </svg>
+    
     <div>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="5" cy="5" r="5" fill="#34C759"/>
