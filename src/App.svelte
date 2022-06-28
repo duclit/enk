@@ -1,7 +1,9 @@
 <script>
-	import { evaluate, simplify } from 'mathjs';
+	import { evaluate } from 'mathjs';
+	import Navbar from './Navbar.svelte';
 	import Selector from './Selector.svelte';
 
+	let loadPoints, updatePoints;
 	let difficulty = "moderate";
 	
 	const error = () => {
@@ -37,13 +39,14 @@
 
 				let series = document.getElementById('series').innerHTML.split(', ');
 
-				if (JSON.stringify([i1.toString(), i2.toString(), i3.toString()]) === JSON.stringify(series)) {
+				if (JSON.stringify([i1.toString(), i2.toString(), i3.toString()]) == JSON.stringify(series)) {
+					updatePoints(difficulty == 'hard' ? 30 : difficulty == 'easy' ? 10 : 20);
 					reloadSeries();
 				} else {
-					error()
+					error();
 				};
 			} catch {
-				error()
+				error();
 			}
 		} 
 	};
@@ -67,37 +70,14 @@
 			],
 		}
 
-		return randomChoiceFrom(
-			generators[difficulty]
-
-			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(5), 'n', '2n'])} ${randomChoiceFrom(['+', '-'])} 1`, 'moderate'],
-			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(4), 'n', '2n'])}`, 'easy'],
-			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberFactorial(6), 'n', '2n', 'n!', '2n!'])}`, 'hard'],
-			// [`n ${randomChoiceFrom(['*', '/', '^'])} ${randomChoiceFrom([randomNumberUpto(6), 'n', '2n'])} ${randomChoiceFrom(['+', '-', '*'])} ${randomNumberUpto(4)}`, 'hard'],
-		);
+		return randomChoiceFrom(generators[difficulty]);
 	}
 
-	// const randomTerm = () => {
-	// 		return randomChoiceFrom([
-	// 			`${randomNumberUpto(3)}n`, randomNumberUpto(6),
-	// 		])
-	// }
-	// 
-	// const randomSeries = () => {
-	// 		let operators = ['+', '-', '*', '^'];
-	// 		let equation = `${randomNumberUpto(4)}n` + randomChoiceFrom(operators);
-	// 		let strength = difficulty == 'hard' ? 4 : difficulty == 'easy' ? 2 : 3;
-	// 	
-	// 		for (let i = 0; i < strength - 2; i++) {
-	// 			equation += randomTerm();
-	// 			equation += randomChoiceFrom(operators);
-	// 		}
-	//
-	// 		equation += randomTerm();
-	// 		console.log(equation);
-	// 		return equation;
-	// };
+	// Why does this work
+	setTimeout(reloadSeries, 10);
 </script>
+
+<Navbar bind:loadPoints={loadPoints} bind:updatePoints={updatePoints}/>
 
 <div>
 	<h1 id="series"> </h1>
