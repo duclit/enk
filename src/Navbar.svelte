@@ -16,13 +16,16 @@
 	}
 
     let points = loadPoints();
+    export let showing;
 </script>
 
 <nav>
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3.73334 10.2667H24.2667M3.73334 17.7333H24.2667M12.1333 2.79999L8.4 25.2M19.6 2.79999L15.8667 25.2" stroke="white" stroke-width="2"/>
     </svg>
-    
+    <button on:click="{() => {showing = true;}}">
+        <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7 4.5V5h1v-.5H7zm1-.01v-.5H7v.5h1zM8 11V7H7v4h1zm0-6.5v-.01H7v.01h1zM6 8h1.5V7H6v1zm0 3h3v-1H6v1zM7.5 1A6.5 6.5 0 0114 7.5h1A7.5 7.5 0 007.5 0v1zM1 7.5A6.5 6.5 0 017.5 1V0A7.5 7.5 0 000 7.5h1zM7.5 14A6.5 6.5 0 011 7.5H0A7.5 7.5 0 007.5 15v-1zm0 1A7.5 7.5 0 0015 7.5h-1A6.5 6.5 0 017.5 14v1z" fill="white"></path></svg>
+    </button>
     <div>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="5" cy="5" r="5" fill="#34C759"/>
@@ -45,6 +48,8 @@
         position: absolute;
         top: 0px;
         left: 0px;
+
+        gap: 6px;
     }
 
     div {
@@ -71,4 +76,20 @@
 
         color: #FFFFFF;
     }
+
+    button {
+		width: 40px;
+		height: 40px;
+		background: transparent;
+		border-radius: 8px;
+		outline: none;
+		cursor: pointer;
+		border: none;
+		transition: opacity 0.2s ease-in;
+		opacity: 60%;
+	}
+
+	button:hover {
+		opacity: 100%;
+	}
 </style>
