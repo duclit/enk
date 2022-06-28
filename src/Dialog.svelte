@@ -1,5 +1,5 @@
 <script>
-    let showing = !localStorage.getItem('visited');
+    export let showing = !localStorage.getItem('visited');
 
     const hide = () => {
         showing = false;
@@ -14,7 +14,7 @@
             <path d="M10.4 14.6H23.6M10.4 19.4H23.6M15.8 9.8L13.4 24.2M20.6 9.8L18.2 24.2" stroke="#2B67E9" stroke-width="2"/>
         </svg>
         <h6>How to play</h6>
-        <p>You're given a series of numbers, and you have to come up with an equation that can predit the value of each number, where <span>n</span> is 1 for the first item, 2 for the second, and so on. For example, the equation for <span>1, 4, 9</span> would be <span>n^2</span>, and the equation for <span>0, 15, 80</span> would be <span>n^4-1</span></p>
+        <p>You're given a series of numbers, and you have to come up with an equation that can predict the value of each number, where <span>n</span> is 1 for the first item, 2 for the second, and so on. For example, the equation for <span>1, 4, 9</span> would be <span>n^2</span>, and the equation for <span>0, 15, 80</span> would be <span>n^4-1</span></p>
         <button on:click={hide}>Continue</button>
     </div>
 </main>
