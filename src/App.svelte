@@ -5,7 +5,7 @@
 	import Selector from './Selector.svelte';
 
 	let answerShown = false;
-	let loadPoints, updatePoints, answer;
+	let loadPoints, updatePoints, resetStreak, updateStreak, answer;
 	let difficulty = "moderate";
 	let dialogShowing = false;
 	
@@ -17,6 +17,15 @@
 			document.getElementById('text').style.borderColor = 'transparent';
 		}, 100);
 	};
+
+	const correct = () => {
+		document.getElementById('text').style.borderColor = 'green';
+		document.getElementById('text').style.background = 'rgba(52, 199, 89, 0.3)';
+		setTimeout(() => {
+			document.getElementById('text').style.borderColor = 'transparent';
+			document.getElementById('text').style.background = '#F2F2F7';
+		}, 200);
+	}
 
 	const reloadSeries = () => {
 		let expression = randomExpression();
@@ -52,7 +61,9 @@
 
 				if (JSON.stringify([i1.toString(), i2.toString(), i3.toString()]) == JSON.stringify(series)) {
 					if (!answerShown) updatePoints(difficulty == 'hard' ? 30 : difficulty == 'easy' ? 10 : 20);
+					correct();
 					reloadSeries();
+					updateStreak();
 				} else {
 					error();
 				};
@@ -91,12 +102,18 @@
 	setTimeout(reloadSeries, 10);
 </script>
 
-<Navbar bind:loadPoints={loadPoints} bind:updatePoints={updatePoints} bind:showing={dialogShowing}/>
+<Navbar 
+	bind:loadPoints={loadPoints} 
+	bind:updatePoints={updatePoints} 
+	bind:showing={dialogShowing} 
+	bind:updateStreak={updateStreak} 
+	bind:resetStreak={resetStreak}
+/>
 
 <main>
 	<h1 id="series"> </h1>
 	<div>
-		<button on:click={reloadSeries}>
+		<button on:click={() => {reloadSeries(); resetStreak();}}>
 			<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M6.5 2.499L6.146 2.145L5.793 2.499L6.146 2.852L6.5 2.5V2.499ZM7.5 1.999H7V2.999H7.5V1.999ZM2 8.495V7.995H1V8.495H2ZM8.145 0.146004L6.146 2.146L6.854 2.852L8.853 0.854004L8.145 0.146004ZM6.146 2.852L8.146 4.851L8.853 4.144L6.853 2.145L6.146 2.852V2.852ZM7.5 3C10.537 3 13 5.461 13 8.496H14C13.9992 6.77271 13.314 5.12028 12.0951 3.9021C10.8761 2.68392 9.2233 1.99974 7.5 2V3ZM13 8.495C12.9992 9.95308 12.4194 11.3512 11.388 12.3818C10.3566 13.4124 8.95808 13.9913 7.5 13.991V14.991C11.089 14.991 14 12.082 14 8.495H13ZM7.5 13.99C6.04209 13.9903 4.64375 13.4116 3.61239 12.3812C2.58102 11.3507 2.00106 9.95291 2 8.495H1C1.0008 10.2183 1.686 11.8707 2.90493 13.0889C4.12386 14.3071 5.7767 14.9913 7.5 14.991V13.991V13.99Z" fill="black"/>
 			</svg>
@@ -125,6 +142,11 @@
 
 		color: #000000;
 		user-select: none;
+
+		transition: background 0.1s ease-in;
+		background: transparent;
+		padding: 4px;
+		border-radius: 8px;
 	}
 
 	button {
@@ -179,7 +201,7 @@
 		color: #8E8E93;
 		padding-left: 12px;
 		outline: none;
-		transition: border 0.2s ease-in;
+		transition: border 0.2s ease-in, background 0.1s ease-in;
 	}
 
 	input[type="text"]:hover {
