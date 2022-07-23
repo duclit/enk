@@ -44,6 +44,7 @@
 
 		document.getElementById('series').innerHTML = `${i1}, ${i2}, ${i3}`;
 		document.getElementById('text').value = "";
+		document.getElementById('text').focus();
 
 		answer = expression;
 	};
@@ -60,10 +61,13 @@
 				let series = document.getElementById('series').innerHTML.split(', ');
 
 				if (JSON.stringify([i1.toString(), i2.toString(), i3.toString()]) == JSON.stringify(series)) {
-					if (!answerShown) updatePoints(difficulty == 'hard' ? 30 : difficulty == 'easy' ? 10 : 20);
+					if (!answerShown) {
+						updatePoints(difficulty == 'hard' ? 30 : difficulty == 'easy' ? 10 : 20)
+						updateStreak();
+					}
+
 					correct();
 					reloadSeries();
-					updateStreak();
 				} else {
 					error();
 				};
@@ -77,7 +81,6 @@
 
 	const randomNumberUpto = (range, start=0) => Math.floor(Math.random() * range) || 1 + start;
 	const randomChoiceFrom = (array) => array[Math.floor(Math.random() * array.length)];
-	const randomNumberFactorial = (range) => `${randomNumberUpto(range)}!`;
 	
 	const randomExpression = () => {
 		const generators = {
