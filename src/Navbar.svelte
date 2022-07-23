@@ -118,6 +118,7 @@
         text-align: center;
 
         color: #FFFFFF;
+        user-select: none;
     }
 
     button {
