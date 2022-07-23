@@ -60,6 +60,7 @@
     .active {
         background: #FFFFFF;
         box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12), 0px 3px 1px rgba(0, 0, 0, 0.04);
+        border: 0.5px solid #C7C7CC;
     }
 
     @media only screen and (max-width: 400px) {
