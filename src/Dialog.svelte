@@ -45,7 +45,7 @@
         gap: 16px;
 
         background: #1C1C1E;
-        border-radius: 24px;
+        border-radius: 18px;
 
         width: 328px;
         height: fit-content;
